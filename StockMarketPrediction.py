@@ -33,5 +33,5 @@ plt.plot(actual_prediction['ds'], actual_prediction['yhat1'], label = "predictio
 plt.plot(forecast['ds'], forecast['yhat1'], label = 'future_prediction', c = 'b')
 plt.plot(stocks['ds'], stocks['y'], label = 'actual', c = 'g')
 plt.legend()
-plt.title('Reliance')
+plt.title(stock_symbol)
 plt.show()
