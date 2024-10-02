@@ -8,5 +8,7 @@ then copy the stock symbol and edit the stock_symbol variable to your own compan
 
 ### stock_symbol = 'YOUR COMPANY STOCK SYMBOL'
 
+make sure to check the start_date and end_date that you want and make sure the stock actually exists!
+
 then simply run the program in vs code or pycharm!
 
