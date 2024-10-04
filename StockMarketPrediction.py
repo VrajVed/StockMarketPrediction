@@ -3,7 +3,8 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 
-stock_symbol = 'RELIANCE.NS' #Stock Company Name [Example RELIANCE, you can take user input too by stock_symbol = input("<prompt>")]
+
+stock_symbol = input("Enter your stock symbol (ex. RELIANCE.NS): ") #Stock Company Name [Example RELIANCE]
 start_date = "2010-01-01"
 end_date = "2024-01-01"
 
