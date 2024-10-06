@@ -35,4 +35,6 @@ plt.plot(forecast['ds'], forecast['yhat1'], label = 'future_prediction', c = 'b'
 plt.plot(stocks['ds'], stocks['y'], label = 'actual', c = 'g')
 plt.legend()
 plt.title(stock_symbol)
+plt.xlabel('YEARS')
+plt.ylabel('PRICE')
 plt.show()
