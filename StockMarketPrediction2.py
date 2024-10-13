@@ -26,6 +26,13 @@ try:
     stock_data = yf.download(stock_symbol, start = start_date, end = end_date)
     # PRINT DATASET   
     st.write(stock_data.head())
+
+except AttributeError as AE:
+    st.error(AE)
+
+
+def predict():
+
     stock_data.to_csv("stock_data.csv")
 
     stocks = pd.read_csv('stock_data.csv')
@@ -69,8 +76,6 @@ try:
     st.legend()
     st.title(stock_symbol)
     st.show()
+    pass
 
-except AttributeError as AE:
-    st.exception(AE)
-except ValueError as VE:
-    st.error("Value Error")
+st.button('Predict', on_click=predict)
