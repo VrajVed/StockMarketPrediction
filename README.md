@@ -1,6 +1,20 @@
 # Stock Market Prediction
 Prediction Algorithm for stock market analysis
 
+Integrating with streamlit...
+Please wait! Thank you!!!
+
+
+
+
+
+
+
+
+
+
+### Run on Local Machine and Code Editor!!!
+
 Packages required: neuralprophet, matplotlib, pandas, yfinance
 
 Currently RELIANCE.NS stock is predicted, to predict your own stock go to https://finance.yahoo.com/ and search for your desired company.
