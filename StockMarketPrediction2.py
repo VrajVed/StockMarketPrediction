@@ -5,12 +5,13 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 
+st.set_page_config(page_title="Stock Market Prediction", page_icon=":chart_with_upwards_trend:")
 st.title("Stock Market Prediction Algorithm")
 
 st.write("### Enter Data")
 # SELECTION BOX
 
-stock_symbol = st.selectbox("Select preffered stock to predict: ",('RELIANCE.NS', 'NESTLEIND.NS','HDFCLIFE.NS','BAJAJFINSV.NS',
+stock_symbol = st.selectbox("Select prefered stock to predict: ",('RELIANCE.NS', 'NESTLEIND.NS','HDFCLIFE.NS','BAJAJFINSV.NS',
 'NTPC.NS','SHRIRAMFIN.NS', 'ULTRACEMCO.NS','TATACONSUM.NS','BAJFINANCE.NS','KOTAKBANK.NS','HEROMOTOCO.NS','BAJAJ-AUTO.NS',
 'BRITANNIA.NS','APOLLOHOSP.NS','BHARTIARTL.NS','TATASTEEL.NS','WIPRO.NS','LT.NS','INDUSINDBK.NS','ITC.NS','TITAN.NS','COALINDIA.NS',
 'ADANIENT.NS','MARUTI.NS','ONGC.NS','CIPLA.NS','TCS.NS','HINDALCO.NS','TRENT.NS'), index=None, placeholder="Select Stock Symbol...", args=None, kwargs=None,label_visibility="visible")
@@ -32,7 +33,13 @@ try:
     stocks = stocks[['Date', 'Close']]
     stocks.columns = ['ds','y']
 
-    st.pyplot(stocks['ds'], stocks['y'], label = 'actual', c = 'g')
+    x = stocks['ds']
+    y = stocks['y']
+    fig, ax = plt.subplots()
+    ax.plot(x,y)
+    plt.xlabel("Timeframe")
+    plt.ylabel("Price in Rs")
+    st.pyplot(fig)
 
     model = NeuralProphet()
     model.fit(stocks)
@@ -42,12 +49,28 @@ try:
     forecast = model.predict(future)
     actual_prediction = model.predict(stocks)
 
-    st.pyplot(actual_prediction['ds'], actual_prediction['yhat1'], label = "prediction_Actual", c = 'r')
-    st.pyplot(forecast['ds'], forecast['yhat1'], label = 'future_prediction', c = 'b')
-    st.pyplot(stocks['ds'], stocks['y'], label = 'actual', c = 'g')
+    fig, ax = plt.subplots()
+    x1 = actual_prediction['ds']
+    y1 = actual_prediction['yhat1']
+    ax.plot(x1,y1)
+    plt.xlabel("Timeframe")
+    plt.ylabel("Price in Rs")
+    st.pyplot(fig)
+
+    fig, ax = plt.subplots()
+    x2 = forecast['ds']
+    y2 = forecast['yhat1']
+    ax.plot(x2,y2)
+    plt.xlabel("Timeframe")
+    plt.ylabel("Price in Rs")
+    st.pyplot(fig)
+
+    st.pyplot(x1,y1)
     st.legend()
     st.title(stock_symbol)
     st.show()
 
-except Exception as e:
-    st.error(f"An error occured: {str(e)}")
+except AttributeError as AE:
+    st.exception(AE)
+except ValueError as VE:
+    st.error("Value Error")
